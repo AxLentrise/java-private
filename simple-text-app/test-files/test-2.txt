@@ -1,0 +1,6 @@
+Outro arquivo de texto
+
+para testar
+
+a substituição
+de um arquivo por outro
