@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class MenuBarPanel extends JPanel {
-	private static final Color BLACK = Color.BLACK;
+	private static final Color GRAY = Color.GRAY;
 	private static final int LEFT = FlowLayout.LEFT;
 	
 	private JMenuBar bar;
@@ -19,7 +19,7 @@ public class MenuBarPanel extends JPanel {
 	
 	public MenuBarPanel() {
 		setLayout(new FlowLayout(LEFT));
-		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, BLACK));
+		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, GRAY));
 		bar = new JMenuBar();
 		add(bar);
 		

@@ -1,6 +1,5 @@
 package com.client.entities;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -19,8 +18,8 @@ public class MessagePanel extends JPanel {
 	public MessagePanel() {		
 		var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setPreferredSize(new Dimension( 	//
-			(int)screenSize.width/3,		//
-			(int)screenSize.height/3		//
+			(int)screenSize.width/2,		//
+			(int)screenSize.height/2		//
 		));
 		setLayout(new BoxLayout(this, Y_AXIS));
 		
@@ -31,10 +30,7 @@ public class MessagePanel extends JPanel {
 			VERTICAL_SCROLLBAR_AS_NEEDED,	//
 			HORIZONTAL_SCROLLBAR_NEVER		//
 		);
-		scrollPane.setBorder(BorderFactory.createCompoundBorder(		//
-			BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK),	//
-			BorderFactory.createEmptyBorder(5, 5, 5, 0)					//
-		));
+		scrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		
 		add(scrollPane);

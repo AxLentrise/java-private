@@ -8,7 +8,7 @@ public class Server {
 	private static final int PORT = 8080;
 	public static final CopyOnWriteArrayList<ClientHandler> clients = new CopyOnWriteArrayList<>();
 	
-	public static void main(String[] args) {
+	public static void main(String [] args) {
 		try(var server = new ServerSocket(PORT)) {
 			System.out.println("Server online.");
 			

@@ -36,7 +36,6 @@ public class ApplicationFrame extends JFrame {
 		super(title);
 		setLayout(new BorderLayout());
 		setUndecorated(true);
-		setResizable(true);
 
 		topPanel = new TopPanel(() -> {
 			dispose();
@@ -110,4 +109,5 @@ public class ApplicationFrame extends JFrame {
 			}
 		}).start();
 	}
+
 }
