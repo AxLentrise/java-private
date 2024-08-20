@@ -1,4 +1,4 @@
-package com.server;
+package server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class ClientHandler implements Runnable {
 	public ClientHandler(Socket client) throws IOException {
 		this.client = client;
 		this.out = new OutputStreamWriter(client.getOutputStream(), StandardCharsets.UTF_8);
-		this.in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+		this.in = new BufferedReader(new InputStreamReader(client.getInputStream(), StandardCharsets.UTF_8));
 	}
 
 	private static final void broadcast(String message, ClientHandler sender) {
@@ -32,8 +32,8 @@ public class ClientHandler implements Runnable {
 	}
 
 	private final void sendMessage(String message) throws IOException {
-		out.write(message + "\n");
-		out.flush();	
+		out.write(message);
+		out.flush();
 	}
 
 	@Override
@@ -42,11 +42,13 @@ public class ClientHandler implements Runnable {
 			var username = "tester";
 			System.out.println("[" + username + "]: Connected.");
 
-			var inputLine = (String) null;
+			var inputLine = "";
 			while ((inputLine = in.readLine()) != null) {
+				System.out.println("[" + username + "]: " + inputLine);
 				broadcast(inputLine, this);
 			}
-//		} catch(EOFException|SocketException e) { // TODO Explicar melhor
+			
+			Server.clients.remove(this);
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -54,20 +56,18 @@ public class ClientHandler implements Runnable {
 			try {
 				in.close();
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 			try {
 				out.close();
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 			try {
 				client.close();
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
-
 }
-
-//private final String getUsername() throws IOException {
-//return in.readLine();
-//}
